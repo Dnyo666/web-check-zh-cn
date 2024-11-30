@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
 import { StyledCard } from 'web-check-live/components/Form/Card';
-import Heading, { type HeadingProps } from 'web-check-live/components/Form/Heading';
+import Heading from 'web-check-live/components/Form/Heading';
 import colors from 'web-check-live/styles/colors';
 
 const Header = styled(StyledCard)`
@@ -27,7 +27,7 @@ interface NavProps {
   children?: ReactNode;
 }
 
-const Nav = ({ children }: NavProps): JSX.Element => {
+const Nav = ({ children }: NavProps) => {
   return (
     <Header as="header">
       <Heading color={colors.primary} size="large">
