@@ -17,15 +17,21 @@ const Header = styled(StyledCard)`
   width: 95vw;
 `;
 
+export const HeaderLinkContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+`;
+
 const Nav = (props: { children?: ReactNode}) => {
   return (
     <Header as="header">
-    <Heading color={colors.primary} size="large">
-      <img width="64" src="/web-check.png" alt="Web Check Icon" />
-      <a href="/" target="_self">Web Check</a>
-    </Heading>
+      <Heading color={colors.primary} size="large">
+        <img width="64" src="/web-check.png" alt="Web Check 图标" />
+        <a href="/" target="_self">Web Check</a>
+      </Heading>
       {props.children && props.children}
-  </Header>
+    </Header>
   );
 };
 
