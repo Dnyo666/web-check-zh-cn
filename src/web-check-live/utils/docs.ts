@@ -212,15 +212,12 @@ const docs: Doc[] = [
   },
   {
     id: "server-info",
-    title: "Server Info",
-    description:
-      "This task retrieves various pieces of information about the server hosting the target website. This can include the server type (e.g., Apache, Nginx), the hosting provider, the Autonomous System Number (ASN), and more. The information is usually obtained through a combination of IP address lookups and analysis of HTTP response headers.",
-    use: "In an OSINT context, server information can provide valuable clues about the organization behind a website. For instance, the choice of hosting provider could suggest the geographical region in which the organization operates, while the server type could hint at the technologies used by the organization. The ASN could also be used to find other domains hosted by the same organization.",
+    title: "服务器信息",
+    description: "获取有关托管网站的服务器的基本信息，包括操作系统、Web 服务器软件、SSL/TLS 配置等。",
+    use: "了解服务器配置可以帮助识别潜在的漏洞，并确保使用最新的安全设置。",
     resources: [
-      "https://en.wikipedia.org/wiki/List_of_HTTP_header_fields",
-      "https://en.wikipedia.org/wiki/Autonomous_system_(Internet)",
-      "https://tools.ietf.org/html/rfc7231#section-7.4.2",
-      "https://builtwith.com/",
+      { title: '服务器信息 - Wiki', link: 'https://en.wikipedia.org/wiki/Server_(computing)' },
+      { title: '了解 Web 服务器', link: 'https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_web_server' },
     ],
     screenshot: 'https://i.ibb.co/Mk1jx32/wc-server.png',
   },

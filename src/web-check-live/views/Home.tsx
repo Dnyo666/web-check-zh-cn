@@ -219,14 +219,14 @@ const Home = (): JSX.Element => {
       <UserInputMain onSubmit={formSubmitEvent}>
         <a href="/">
           <Heading as="h1" size="xLarge" align="center" color={colors.primary}>
-            <img width="64" src="/web-check.png" alt="Web Check Icon" />
+            <img width="64" src="/web-check.png" alt="Web Check 图标" />
             Web Check
           </Heading>
         </a>
         <Input
           id="user-input"
           value={userInput}
-          label="Enter a URL"
+          label="输入网址"
           size="large"
           orientation="vertical"
           name="url"
@@ -237,10 +237,10 @@ const Home = (): JSX.Element => {
         />
         {/* <FindIpButton onClick={findIpAddress}>Or, find my IP</FindIpButton> */}
         { errorMsg && <ErrorMessage>{errorMsg}</ErrorMessage>}
-        <Button type="submit" styles="width: calc(100% - 1rem);" size="large" onClick={submit}>Analyze!</Button>
+        <Button type="submit" styles="width: calc(100% - 1rem);" size="large" onClick={submit}>开始分析!</Button>
       </UserInputMain>
       <SponsorCard>
-        <Heading as="h2" size="small" color={colors.primary}>Sponsored by</Heading>
+        <Heading as="h2" size="small" color={colors.primary}>赞助商</Heading>
         <div className="inner">
           <p>
             <a
@@ -249,20 +249,18 @@ const Home = (): JSX.Element => {
               href="https://terminaltrove.com/?utm_campaign=github&utm_medium=referral&utm_content=web-check&utm_source=wcgh"
             >
               Terminal Trove
-            </a> - The $HOME of all things in the terminal.
+            </a> - 终端工具的家园。
             <br />
             <span className="cta">
-              Get updates on the latest CLI/TUI tools via
-              the <a
+              通过 <a
                 target="_blank"
                 rel="noreferrer"
                 className="cta"
                 href="https://terminaltrove.com/newsletter?utm_campaign=github&utm_medium=referral&utm_content=web-check&utm_source=wcgh"
                 >
-                Terminal Trove newsletter
-              </a>
+                Terminal Trove 通讯
+              </a> 获取最新的 CLI/TUI 工具更��
             </span>
-            
           </p>
           <a
             target="_blank"
@@ -275,21 +273,21 @@ const Home = (): JSX.Element => {
       </SponsorCard>
       <SiteFeaturesWrapper>
         <div className="features">
-          <Heading as="h2" size="small" color={colors.primary}>Supported Checks</Heading>
+          <Heading as="h2" size="small" color={colors.primary}>支持的检查项</Heading>
           <ul>
             {docs.map((doc, index) => (<li key={index}>{doc.title}</li>))}
-            <li><Link to="/about">+ more!</Link></li>
+            <li><Link to="/about">+ 更多!</Link></li>
           </ul>
         </div>
         <div className="links">
-          <a target="_blank" rel="noreferrer" href="https://github.com/lissy93/web-check" title="Check out the source code and documentation on GitHub, and get support or contribute">
-            <Button>View on GitHub</Button>
+          <a target="_blank" rel="noreferrer" href="https://github.com/lissy93/web-check" title="在 GitHub 上查看源代码和文档，获取支持或贡献">
+            <Button>在 GitHub 上查看</Button>
           </a>
-          <a target="_blank" rel="noreferrer" href="https://app.netlify.com/start/deploy?repository=https://github.com/lissy93/web-check" title="Deploy your own private or public instance of Web-Check to Netlify">
-            <Button>Deploy your own</Button>
+          <a target="_blank" rel="noreferrer" href="https://app.netlify.com/start/deploy?repository=https://github.com/lissy93/web-check" title="在 Netlify 上部署您自己的私有或公共 Web-Check 实例">
+            <Button>部署您自己的实例</Button>
           </a>
-          <Link to="/about#api-documentation" title="View the API documentation, to use Web-Check programmatically">
-            <Button>API Docs</Button>
+          <Link to="/about#api-documentation" title="查看 API 文档，以编程方式使用 Web-Check">
+            <Button>API 文档</Button>
           </Link>
         </div>
       </SiteFeaturesWrapper>

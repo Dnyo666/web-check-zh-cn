@@ -281,38 +281,38 @@ const About = (): JSX.Element => {
         <p>// Coming soon...</p>
       </Section>
 
-      <Heading as="h2" size="medium" color={colors.primary}>Additional Resources</Heading>
+      <Heading as="h2" size="medium" color={colors.primary}>更多资源</Heading>
       <AdditionalResources />
 
-      <Heading as="h2" size="medium" color={colors.primary}>Support Us</Heading>
+      <Heading as="h2" size="medium" color={colors.primary}>支持我们</Heading>
       <Section>
         {supportUs.map((para, index: number) => (<p dangerouslySetInnerHTML={{__html: para}} />))}
       </Section>
 
-      <Heading as="h2" size="medium" color={colors.primary}>Terms & Info</Heading>
+      <Heading as="h2" size="medium" color={colors.primary}>条款和信息</Heading>
       <Section>
-      <Heading as="h3" size="small" color={colors.primary}>License</Heading>
+      <Heading as="h3" size="small" color={colors.primary}>许可证</Heading>
         <b>
-          <a target="_blank" rel="noreferrer" href="https://github.com/lissy93/web-check">Web-Check</a> is distributed under the MIT license,
+          <a target="_blank" rel="noreferrer" href="https://github.com/lissy93/web-check">Web-Check</a> 在 MIT 许可下分发，
           © <a target="_blank" rel="noreferrer" href="https://aliciasykes.com">Alicia Sykes</a> { new Date().getFullYear()}
         </b>
         <br />
-        <small>For more info, see <a target="_blank" rel="noreferrer" href="https://tldrlegal.com/license/mit-license">TLDR Legal → MIT</a></small>
+        <small>更多信息，请参见 <a target="_blank" rel="noreferrer" href="https://tldrlegal.com/license/mit-license">TLDR Legal → MIT</a></small>
         <pre>{license}</pre>
         <hr />
-        <Heading as="h3" size="small" color={colors.primary}>Fair Use</Heading>
+        <Heading as="h3" size="small" color={colors.primary}>合理使用</Heading>
         <ul>
           {fairUse.map((para, index: number) => (<li>{para}</li>))}
         </ul>
         <hr />
-        <Heading as="h3" size="small" color={colors.primary}>Privacy</Heading>
+        <Heading as="h3" size="small" color={colors.primary}>隐私</Heading>
         <p>
-        Analytics are used on the demo instance (via a self-hosted Plausible instance), this only records the URL you visited but no personal data.
-        There's also some basic error logging (via a self-hosted GlitchTip instance), this is only used to help me fix bugs.
+        演示实例使用分析功能（通过自托管的 Plausible 实例），这只记录您访问的 URL，不记录任何个人数据。
+        还有一些基本的错误日志记录（通过自托管的 GlitchTip 实例），这仅用于帮助我修复错误。
         <br />
         <br />
-        Neither your IP address, browser/OS/hardware info, nor any other data will ever be collected or logged.
-        (You may verify this yourself, either by inspecting the source code or the using developer tools)
+        您的 IP 地址、浏览器/操作系统/硬件信息或任何其他数据都不会被收集或记录。
+        （您可以通过检查源代码或使用开发者工具来验证这一点）
         </p>
       </Section>
     </AboutContainer>

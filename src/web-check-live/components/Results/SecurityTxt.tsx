@@ -1,4 +1,3 @@
-
 import { Card } from 'web-check-live/components/Form/Card';
 import Row, { Details } from 'web-check-live/components/Form/Row';
 import colors from 'web-check-live/styles/colors';
@@ -35,11 +34,11 @@ const SecurityTxtCard = (props: {data: any, title: string, actionButtons: any })
   const securityTxt = props.data;
   return (
     <Card heading={props.title} actionButtons={props.actionButtons} styles={cardStyles}>
-      <Row lbl="Present" val={securityTxt.isPresent ? '✅ Yes' : '❌ No'} />
+      <Row lbl="是否存在" val={securityTxt.isPresent ? '✅ 是' : '❌ 否'} />
       { securityTxt.isPresent && (
         <>
-        <Row lbl="File Location" val={securityTxt.foundIn} />
-        <Row lbl="PGP Signed" val={securityTxt.isPgpSigned ? '✅ Yes' : '❌ No'} />
+        <Row lbl="文件位置" val={securityTxt.foundIn} />
+        <Row lbl="PGP 签名" val={securityTxt.isPgpSigned ? '✅ 是' : '❌ 否'} />
         {securityTxt.fields && Object.keys(securityTxt.fields).map((field: string, index: number) => {
           if (securityTxt.fields[field].includes('http')) return (
             <Row lbl="" val="" key={`policy-url-row-${index}`}>
@@ -52,13 +51,13 @@ const SecurityTxtCard = (props: {data: any, title: string, actionButtons: any })
           );
         })}
         <Details>
-          <summary>View Full Policy</summary>
+          <summary>查看完整策略</summary>
           <pre>{securityTxt.content}</pre>
         </Details>
         </>
       )}
       {!securityTxt.isPresent && (<small>
-        Having a security.txt ensures security researchers know how and where to safely report vulnerabilities.
+        拥有 security.txt 可以确保安全研究人员知道如何以及在哪里安全地报告漏洞。
       </small>)}
     </Card>
   );

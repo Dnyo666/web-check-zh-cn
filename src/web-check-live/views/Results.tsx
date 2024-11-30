@@ -869,48 +869,40 @@ const Results = (props: { address?: string } ): JSX.Element => {
   return (
     <ResultsOuter>
       <Nav>
-      { address && 
-        <Heading color={colors.textColor} size="medium">
-          { addressType === 'url' && <a target="_blank" rel="noreferrer" href={address}><img width="32px" src={`https://icon.horse/icon/${makeSiteName(address)}`} alt="" /></a> }
-          {makeSiteName(address)}
-        </Heading>
+        { address && 
+          <Heading color={colors.textColor} size="medium">
+            { addressType === 'url' && <a target="_blank" rel="noreferrer" href={address}><img width="32px" src={`https://icon.horse/icon/${makeSiteName(address)}`} alt="网站图标" /></a> }
+            {makeSiteName(address)}
+          </Heading>
         }
+        <HeaderLinkContainer>
+          <a href="/"><Button>新检查</Button></a>
+          <a href="/about"><Button>了解更多</Button></a>
+        </HeaderLinkContainer>
       </Nav>
-      <ProgressBar loadStatus={loadingJobs} showModal={showErrorModal} showJobDocs={showInfo} />
-      {/* { address?.includes(window?.location?.hostname || 'web-check.xyz') && <SelfScanMsg />} */}
-      <Loader show={loadingJobs.filter((job: LoadingJob) => job.state !== 'loading').length < 5} />
-      <FilterButtons>{ showFilters ? <>
+      <FilterButtons>
         <div className="one-half">
-        <span className="group-label">Filter by</span>
-        {['server', 'client', 'meta'].map((tag: string) => (
-          <button
-            key={tag}
-            className={tags.includes(tag) ? 'selected' : ''}
-            onClick={() => updateTags(tag)}>
-              {tag}
-          </button>
-        ))}
-        {(tags.length > 0 || searchTerm.length > 0) && <span onClick={clearFilters} className="clear">Clear Filters</span> }
+          <span className="group-label">按类型筛选</span>
+          {['服务器', '客户端', '元数据'].map((tag: string) => (
+            <button
+              key={tag}
+              className={tags.includes(tag) ? 'selected' : ''}
+              onClick={() => updateTags(tag)}>
+                {tag}
+            </button>
+          ))}
+          {(tags.length > 0 || searchTerm.length > 0) && <span onClick={clearFilters} className="clear">清除筛选</span> }
         </div>
         <div className="one-half">
-        <span className="group-label">Search</span>
-        <input 
-          type="text" 
-          placeholder="Filter Results" 
-          value={searchTerm} 
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <span className="toggle-filters" onClick={() => setShowFilters(false)}>Hide</span>
+          <span className="group-label">搜索</span>
+          <input
+            type="text"
+            placeholder="筛选结果" 
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <span className="toggle-filters" onClick={() => setShowFilters(false)}>隐藏</span>
         </div>
-        </> : (
-          <div className="control-options">
-            <span className="toggle-filters" onClick={() => setShowFilters(true)}>Show Filters</span>
-            <a href="#view-download-raw-data"><span className="toggle-filters">Export Data</span></a>
-            <a href="/about"><span className="toggle-filters">Learn about the Results</span></a>
-            <a href="/about#additional-resources"><span className="toggle-filters">More tools</span></a>
-            <a target="_blank" rel="noreferrer" href="https://github.com/lissy93/web-check"><span className="toggle-filters">View GitHub</span></a>
-          </div>
-      ) }
       </FilterButtons>
       <ResultsContent>
         <Masonry

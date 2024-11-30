@@ -333,7 +333,7 @@ const RunningText = (props: { state: LoadingJob[], count: number }): JSX.Element
   const isDone = loadingTasksCount >= jobNames.length;
   return (
     <p className="run-status">
-    { isDone ? 'Finished in ' : `Running ${loadingTasksCount} of ${jobNames.length} jobs - ` }
+    { isDone ? '完成于 ' : `正在运行 ${loadingTasksCount} / ${jobNames.length} 个任务 - ` }
     <MillisecondCounter isDone={isDone} />
     </p>
   );
@@ -346,16 +346,16 @@ const SummaryText = (props: { state: LoadingJob[], count: number }): JSX.Element
   let skippedTasksCount = props.state.filter((val: LoadingJob) => val.state === 'skipped').length;
   let successTasksCount = props.state.filter((val: LoadingJob) => val.state === 'success').length;
 
-  const jobz = (jobCount: number) => `${jobCount} ${jobCount === 1 ? 'job' : 'jobs'}`;
+  const jobz = (jobCount: number) => `${jobCount} ${jobCount === 1 ? '个任务' : '个任务'}`;
 
-  const skippedInfo = skippedTasksCount > 0 ? (<span className="skipped">{jobz(skippedTasksCount)} skipped </span>) : null;
-  const successInfo = successTasksCount > 0 ? (<span className="success">{jobz(successTasksCount)} successful </span>) : null;
-  const failedInfo = failedTasksCount > 0 ? (<span className="error">{jobz(failedTasksCount)} failed </span>) : null;
+  const skippedInfo = skippedTasksCount > 0 ? (<span className="skipped">{jobz(skippedTasksCount)} 已跳过 </span>) : null;
+  const successInfo = successTasksCount > 0 ? (<span className="success">{jobz(successTasksCount)} 成功 </span>) : null;
+  const failedInfo = failedTasksCount > 0 ? (<span className="error">{jobz(failedTasksCount)} 失败 </span>) : null;
 
   if (loadingTasksCount > 0) {
     return (
       <SummaryContainer className="loading-info">
-        <b>Loading {totalJobs - loadingTasksCount} / {totalJobs} Jobs</b>
+        <b>正在加载 {totalJobs - loadingTasksCount} / {totalJobs} 个任务</b>
         {skippedInfo}
       </SummaryContainer>
     );
@@ -364,7 +364,7 @@ const SummaryText = (props: { state: LoadingJob[], count: number }): JSX.Element
   if (failedTasksCount === 0) {
     return (
       <SummaryContainer className="success-info">
-        <b>{successTasksCount} Jobs Completed Successfully</b>
+        <b>{successTasksCount} 个任务成功完成</b>
         {skippedInfo}
       </SummaryContainer>
     );
