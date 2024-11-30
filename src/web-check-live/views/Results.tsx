@@ -67,6 +67,8 @@ import {
   applyWhoIsResults, type Whois,
   parseShodanResults, type ShodanResults
 } from 'web-check-live/utils/result-processor';
+import Button from 'web-check-live/components/Form/Button';
+import { HeaderLinkContainer } from 'web-check-live/components/Form/Nav';
 
 const ResultsOuter = styled.div`
   display: flex;
@@ -880,7 +882,7 @@ const Results = (props: { address?: string } ): JSX.Element => {
           <a href="/about"><Button>了解更多</Button></a>
         </HeaderLinkContainer>
       </Nav>
-      <FilterButtons>
+      <FilterButtons>{ showFilters ? <>
         <div className="one-half">
           <span className="group-label">按类型筛选</span>
           {['服务器', '客户端', '元数据'].map((tag: string) => (
@@ -903,6 +905,15 @@ const Results = (props: { address?: string } ): JSX.Element => {
           />
           <span className="toggle-filters" onClick={() => setShowFilters(false)}>隐藏</span>
         </div>
+        </> : (
+        <div className="control-options">
+          <span className="toggle-filters" onClick={() => setShowFilters(true)}>显示筛选</span>
+          <a href="#view-download-raw-data"><span className="toggle-filters">导出数据</span></a>
+          <a href="/about"><span className="toggle-filters">了解检查结果</span></a>
+          <a href="/about#additional-resources"><span className="toggle-filters">更多工具</span></a>
+          <a target="_blank" rel="noreferrer" href="https://github.com/lissy93/web-check"><span className="toggle-filters">查看 GitHub</span></a>
+        </div>
+      ) }
       </FilterButtons>
       <ResultsContent>
         <Masonry
