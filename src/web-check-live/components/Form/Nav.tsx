@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
 import { StyledCard } from 'web-check-live/components/Form/Card';
-import Heading from 'web-check-live/components/Form/Heading';
+import Heading, { type HeadingProps } from 'web-check-live/components/Form/Heading';
 import colors from 'web-check-live/styles/colors';
 
 const Header = styled(StyledCard)`
@@ -23,14 +23,20 @@ export const HeaderLinkContainer = styled.div`
   align-items: center;
 `;
 
-const Nav = (props: { children?: ReactNode}) => {
+interface NavProps {
+  children?: ReactNode;
+}
+
+const Nav = ({ children }: NavProps): JSX.Element => {
   return (
     <Header as="header">
       <Heading color={colors.primary} size="large">
-        <img width="64" src="/web-check.png" alt="Web Check 图标" />
-        <a href="/" target="_self">Web Check</a>
+        <>
+          <img width="64" src="/web-check.png" alt="Web Check 图标" />
+          <a href="/" target="_self">Web Check</a>
+        </>
       </Heading>
-      {props.children && props.children}
+      {children}
     </Header>
   );
 };
