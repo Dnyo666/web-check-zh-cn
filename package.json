@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.5.10",
-    "@astrojs/react": "^3.3.2",
+    "@astrojs/react": "^3.0.7",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",

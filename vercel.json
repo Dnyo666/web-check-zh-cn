@@ -1,27 +1,25 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/node",
-      "config": {
-        "nodeVersion": "18.x"
-      }
-    }
-  ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/"
+      "dest": "/api/$1.js"
     }
   ],
+  "functions": {
+    "api/*.js": {
+      "maxDuration": 10
+    }
+  },
   "env": {
     "PLATFORM": "vercel",
-    "CI": "false"
+    "CI": "false",
+    "CHROME_PATH": "/usr/bin/chromium",
+    "NODE_VERSION": "18.x",
+    "GOOGLE_CLOUD_API_KEY": "",
+    "BUILT_WITH_API_KEY": "",
+    "REACT_APP_SHODAN_API_KEY": "",
+    "REACT_APP_WHO_API_KEY": ""
   },
   "build": {
     "env": {
