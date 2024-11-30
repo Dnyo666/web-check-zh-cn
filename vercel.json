@@ -8,5 +8,24 @@
         "nodeVersion": "18.x"
       }
     }
-  ]
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/"
+    }
+  ],
+  "env": {
+    "PLATFORM": "vercel",
+    "CI": "false"
+  },
+  "build": {
+    "env": {
+      "PLATFORM": "vercel"
+    }
+  }
 }
