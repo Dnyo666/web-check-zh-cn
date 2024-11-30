@@ -11,7 +11,8 @@
     "dev:netlify": "PLATFORM='netlify' npx netlify dev",
     "dev:api": "DISABLE_GUI='true' PORT='3001' nodemon server",
     "dev:astro": "PUBLIC_API_ENDPOINT=http://localhost:3001/api astro dev",
-    "dev": "concurrently -c magenta,cyan -n backend,frontend 'yarn dev:api' 'yarn dev:astro'"
+    "dev": "concurrently -c magenta,cyan -n backend,frontend 'yarn dev:api' 'yarn dev:astro'",
+    "postinstall": "yarn install --ignore-engines"
   },
   "dependencies": {
     "@astrojs/check": "^0.5.10",
@@ -71,6 +72,6 @@
     "sass": "^1.77.1"
   },
   "engines": {
-    "node": "18.x"
+    "node": ">=18.16.1"
   }
 }
