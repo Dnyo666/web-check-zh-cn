@@ -1,49 +1,27 @@
+import * as cheerio from 'cheerio';
 import axios from 'axios';
-import cheerio from 'cheerio';
-import urlLib from 'url';
-import middleware from './_common/middleware.js';
 
-const linkedPagesHandler = async (url) => {
-  const response = await axios.get(url);
-  const html = response.data;
-  const $ = cheerio.load(html);
-  const internalLinksMap = new Map();
-  const externalLinksMap = new Map();
-
-  // Get all links on the page
-  $('a[href]').each((i, link) => {
-    const href = $(link).attr('href');
-    const absoluteUrl = urlLib.resolve(url, href);
-    
-    // Check if absolute / relative, append to appropriate map or increment occurrence count
-    if (absoluteUrl.startsWith(url)) {
-      const count = internalLinksMap.get(absoluteUrl) || 0;
-      internalLinksMap.set(absoluteUrl, count + 1);
-    } else if (href.startsWith('http://') || href.startsWith('https://')) {
-      const count = externalLinksMap.get(absoluteUrl) || 0;
-      externalLinksMap.set(absoluteUrl, count + 1);
+export default async function handler(req, res) {
+  try {
+    const { url } = req.query;
+    if (!url) {
+      return res.status(400).json({ error: '缺少 URL 参数' });
     }
-  });
 
-  // Sort by most occurrences, remove supplicates, and convert to array
-  const internalLinks = [...internalLinksMap.entries()].sort((a, b) => b[1] - a[1]).map(entry => entry[0]);
-  const externalLinks = [...externalLinksMap.entries()].sort((a, b) => b[1] - a[1]).map(entry => entry[0]);
+    const response = await axios.get(url);
+    const $ = cheerio.load(response.data);
+    
+    const links = [];
+    $('a').each((i, link) => {
+      const href = $(link).attr('href');
+      if (href && !href.startsWith('#') && !href.startsWith('javascript:')) {
+        links.push(href);
+      }
+    });
 
-  // If there were no links, then mark as skipped and show reasons
-  if (internalLinks.length === 0 && externalLinks.length === 0) {
-    return {
-      statusCode: 400,
-      body: {
-        skipped: 'No internal or external links found. '
-          + 'This may be due to the website being dynamically rendered, using a client-side framework (like React), and without SSR enabled. '
-          + 'That would mean that the static HTML returned from the HTTP request doesn\'t contain any meaningful content for Web-Check to analyze. '
-          + 'You can rectify this by using a headless browser to render the page instead.',
-        },
-    };
+    return res.status(200).json({ links: Array.from(new Set(links)) });
+  } catch (error) {
+    console.error('Error fetching linked pages:', error);
+    return res.status(500).json({ error: '获取链接页面时出错' });
   }
-
-  return { internal: internalLinks, external: externalLinks };
-};
-
-export const handler = middleware(linkedPagesHandler);
-export default handler;
+}
